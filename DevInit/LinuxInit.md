@@ -167,3 +167,6 @@
     > git config user.email
     > git config --list
 
+## 七、安装常用软件
+
+> apt install gcc g++ make git gdb gcc-9 g++-9 htop sshpass bear tree -y
