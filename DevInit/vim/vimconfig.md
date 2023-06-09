@@ -125,10 +125,6 @@
 
 > vim 的命令行执行 PlugInstall
 
-- 安装 coc 插件
-
-> vim 命令行执行 CocInstall coc-json coc-clangd coc-cmake coc-pairs coc-snippets
-
 - 安装 LeaderF加速搜索插件C语言编译
 
 > LeaderfInstallCExtension
@@ -141,15 +137,20 @@
 
 - 进入到coc-nvim目录下，安装yarn依赖
 
-    > cd ~/.vim/plugged/coc.nvim/
-    > yarn install
-    > yarn build
+
+> cd ~/.vim/plugged/coc.nvim/
+> yarn install
+> yarn build
+
+- 安装 coc 插件
+
+    > vim 命令行执行 CocInstall coc-json coc-clangd coc-cmake coc-pairs coc-snippets
 
 ## 八、gtags源码安装
 
 - 下载源码
 
-    > curl -OLhttps://ftp.gnu.org/pub/gnu/global/global-6.6.9.tar.gz
+    > curl -OL https://ftp.gnu.org/pub/gnu/global/global-6.6.9.tar.gz
 
 - 编译安装
 

@@ -30,14 +30,14 @@
 
 - 替换成如下
 
-> deb [http://mirrors.aliyun.com/debian/](https://gitee.com/link?target=http%3A%2F%2Fmirrors.aliyun.com%2Fdebian%2F) bullseye main non-free contrib
-> deb-src [http://mirrors.aliyun.com/debian/](https://gitee.com/link?target=http%3A%2F%2Fmirrors.aliyun.com%2Fdebian%2F) bullseye main non-free contrib
-> deb [http://mirrors.aliyun.com/debian-security/](https://gitee.com/link?target=http%3A%2F%2Fmirrors.aliyun.com%2Fdebian-security%2F) bullseye-security main
-> deb-src [http://mirrors.aliyun.com/debian-security/](https://gitee.com/link?target=http%3A%2F%2Fmirrors.aliyun.com%2Fdebian-security%2F) bullseye-security main
-> deb [http://mirrors.aliyun.com/debian/](https://gitee.com/link?target=http%3A%2F%2Fmirrors.aliyun.com%2Fdebian%2F) bullseye-updates main non-free contrib
-> deb-src [http://mirrors.aliyun.com/debian/](https://gitee.com/link?target=http%3A%2F%2Fmirrors.aliyun.com%2Fdebian%2F) bullseye-updates main non-free contrib
-> deb [http://mirrors.aliyun.com/debian/](https://gitee.com/link?target=http%3A%2F%2Fmirrors.aliyun.com%2Fdebian%2F) bullseye-backports main non-free contrib
-> deb-src [http://mirrors.aliyun.com/debian/](https://gitee.com/link?target=http%3A%2F%2Fmirrors.aliyun.com%2Fdebian%2F) bullseye-backports main non-free contrib
+> deb https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+> deb-src https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+> deb https://mirrors.aliyun.com/debian-security/ bullseye-security main
+> deb-src https://mirrors.aliyun.com/debian-security/ bullseye-security main
+> deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+> deb-src https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+> deb https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+> deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
 
 - 软件更新
 
@@ -53,12 +53,12 @@
 
 - 在文件下追加
 
-> auto ens32
-> iface ens32 inet static
+> auto ens192
+> iface ens192 inet static
 > address 10.20.10.55
-> gateway 10.20.10.2
+> gateway 10.20.10.1
 > netmask 255.255.255.0
-> dns-serversname 10.20.10.2
+> dns-serversname 10.20.10.1
 
 - 重启系统，配置生效
 
@@ -68,6 +68,8 @@
 
 - 终端开启彩色，下面的语句取消注释
 
+    > vim ~/.bashrc
+    >
     > export LS_OPTIONS='--color=auto'
     > eval "$(dircolors)"
     > alias ls='ls $LS_OPTIONS'
@@ -112,8 +114,8 @@
 
 > cd /root/.oh-my-zsh/custom/plugins/
 >
-> git clone [https://github.com/zsh-users/zsh-syntax-highlighting.git](https://gitee.com/link?target=https%3A%2F%2Fgithub.com%2Fzsh-users%2Fzsh-syntax-highlighting.git)
-> git clone https://github.com/zsh-users/zsh-autosuggestions.git
+> git clone [https://github.com/zsh-users/zsh-syntax-highlighting.git](https://gitee.com/link?target=https%3A%2F%2Fgithub.com%2Fzsh-users%2Fzsh-syntax-highlighting.git) 
+> git clone https://github.com/zsh-users/zsh-autosuggestions.git 
 
 - 编辑 zsh 配置文件 ~/.zshrc，并添加开启代理环境变量
 

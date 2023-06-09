@@ -1,0 +1,33 @@
+{
+    // 设置自定义代码片段优先级
+    "snippets.priority": 100,
+    // 开启代码高亮
+    "semanticTokens.enable": true,
+    // 禁用Enter选择第一项(在一些情况下不适用)
+    "suggest.noselect": false,
+    // clangd的参数，和vscode参数可以共用
+    "snippets.textmateSnippetsRoots": ["/root/code/snippets"],
+    "clangd.arguments": [
+        "--compile-commands-dir=${workspaceFolder}/build",
+        "--background-index",
+        "--clang-tidy",
+        "--clang-tidy-checks=clang-analyzer-*,cppcoreguidelines-*,performance-*,bugprone-*,misc-*,google-*,modernize-*,readability-*,portability-*",
+        "--completion-style=bundled",
+        "--all-scopes-completion",
+        "--function-arg-placeholders",
+        "--fallback-style=Microsoft",
+        "--header-insertion=iwyu",
+        "--header-insertion-decorators",
+        "-j=12",
+        "--malloc-trim",
+        "--pch-storage=memory",
+        "--pretty"
+    ],
+    // 额外选项，设置语法检查的标准和文件
+    "clangd.fallbackFlags": [
+        "-xc",
+        "-std=c11",
+        "-xc++",
+        "-std=c++11"
+    ]
+}
