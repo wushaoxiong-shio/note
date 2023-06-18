@@ -1,5 +1,9 @@
 # 环境搭建
 
+Debian镜像下载
+
+> https://cdimage.debian.org/cdimage/archive/
+
 ## 一、开启远程连接
 
 - 编辑配置文件
@@ -65,6 +69,10 @@
 > reboot
 
 ## 四、设置终端
+
+- 设置终端光标颜色
+
+    > "cursorColor": "#7673BB"
 
 - 终端开启彩色，下面的语句取消注释
 
