@@ -68,6 +68,14 @@
     apt upgrade -y
     ```
 
+- 下载常用软件
+
+    ```shell
+    apt install gcc g++ make git gdb gcc-9 g++-9 htop sshpass bear tree zsh curl -y
+    ```
+
+    
+
 ## 三、配置静态IP
 
 - 编辑配置文件
@@ -105,25 +113,16 @@
 
     ```shell
     vim /etc/profile
-    
     export http_proxy=http://10.20.10.30:7890
     export https_proxy=http://10.20.10.30:7890
-    
     # 执行 source /etc/profile 配置生效
-    apt install curl -y
     ```
-
+    
 - 测试代理是否开启
 
     ```shell
     curl www.google.com
     # 有返回结果输出，则说明已开启代理
-    ```
-
-- 安装 zsh
-
-    ```shell
-    apt install -y zsh
     ```
 
 - 切换zsh为默认的终端
@@ -203,9 +202,14 @@
     git config --list
     ```
 
-## 七、安装常用软件
+## 七、跳过开机GRUB选择界面
 
 ```shell
-apt install gcc g++ make git gdb gcc-9 g++-9 htop sshpass bear tree -y
+# 编辑 grub 配置文件
+vim /etc/default/grub
+# 将 grub 超时时间设置为0
+GRUB_TIMEOUT=0
+# 保存 grub 配置，使其生效
+update-grub
 ```
 
