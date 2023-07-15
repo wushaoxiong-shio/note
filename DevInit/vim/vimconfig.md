@@ -35,9 +35,12 @@
 > apt remove -y vim
 
 > cd ./vim
->
-> ./configure --with-features=huge --enable-multibyte
-> --enable-python3interp=yes --prefix=/usr/local/vim9 --enable-cscope
+
+```shell
+./configure --with-features=huge --enable-multibyte --enable-python3interp=yes --prefix=/usr/local/vim9 --enable-cscope
+```
+
+
 
 > make && make install
 >
@@ -87,7 +90,9 @@
 
 - 下离线包
 
-> curl -OL https://github.com/Kitware/CMake/releases/download/v3.25.2/cmake-3.25.2-linux-x86_64.tar.gz
+    ```shell
+    curl -OL https://github.com/Kitware/CMake/releases/download/v3.27.0-rc5/cmake-3.27.0-rc5-linux-x86_64.tar.gz
+    ```
 
 - 解压
 

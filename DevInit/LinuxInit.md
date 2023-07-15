@@ -101,30 +101,13 @@
     "cursorColor": "#7673BB"
     ```
 
-- 终端开启彩色，下面的语句取消注释
-
-    ```shell
-    vim ~/.bashrc
-    
-    export LS_OPTIONS='--color=auto'
-    eval "$(dircolors)"
-    alias ls='ls $LS_OPTIONS'
-    alias ll='ls $LS_OPTIONS -l'
-    alias l='ls $LS_OPTIONS -lA'
-    alias rm='rm -i'
-    alias cp='cp -i'
-    alias mv='mv -i'
-    
-    # 执行 source ~/.bashrc 配置生效
-    ```
-
 - 开启系统代理，打开配置文件添加环境变量
 
     ```shell
     vim /etc/profile
     
-    export http_proxy=http://10.20.10.206:7890
-    export https_proxy=http://10.20.10.206:7890
+    export http_proxy=http://10.20.10.30:7890
+    export https_proxy=http://10.20.10.30:7890
     
     # 执行 source /etc/profile 配置生效
     apt install curl -y
