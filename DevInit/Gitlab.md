@@ -51,5 +51,10 @@ cat /etc/gitlab/initial_root_password
 # 关闭 <指标 - Grafana>
 # 关闭 <分析 - 性能栏>
 # 关闭 <使用情况统计> 的版本检查和服务Ping
+
+
+#  备份与恢复 参考官方文档 https://docs.gitlab.cn/jh/raketasks/backup_restore.html
+
+
 ```
 
