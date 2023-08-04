@@ -20,7 +20,7 @@
     "cmake.configureOnOpen": false,
     "cmake.parallelJobs": 32,
     "clangd.arguments": [
-        "--compile-commands-dir=${workspaceFolder}/build",
+        "--compile-commands-dir=${workspaceFolder},${workspaceFolder}/build",
         "--background-index",
         "--clang-tidy",
         "--clang-tidy-checks=clang-analyzer-*,cppcoreguidelines-*,performance-*,bugprone-*,misc-*,google-*,modernize-*,readability-*,portability-*",
@@ -28,7 +28,7 @@
         "--all-scopes-completion",
         "--function-arg-placeholders",
         "--fallback-style=Microsoft",
-        "--header-insertion=iwyu",
+        "--header-insertion=never",
         "--header-insertion-decorators",
         "-j=16",
         "--malloc-trim",
@@ -39,7 +39,7 @@
         "-xc",
         "-std=c11",
         "-xc++",
-        "-std=c++11"
+        "-std=c++17"
     ],
     "todo-tree.highlights.defaultHighlight": {
         "type": "line",
