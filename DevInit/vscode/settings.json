@@ -41,6 +41,17 @@
         "-xc++",
         "-std=c++11"
     ],
+    "todo-tree.highlights.defaultHighlight": {
+        "type": "line",
+        "foreground": "#e9c00c",
+        "background": "#343163",
+        "icon": "dash",
+        "opacity": 40
+    },
+    "todo-tree.general.tags": [
+        "TODO",
+        "SHIO"
+    ],
     "editor.tokenColorCustomizations": {
         "[One Dark Pro]": {
             "comments": "#56A6AE",

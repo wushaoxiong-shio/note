@@ -213,3 +213,9 @@ GRUB_TIMEOUT=0
 update-grub
 ```
 
+## 八、bear 3.0版本需配置环回地址不走代理
+
+```shell
+export no_proxy=localhost,127.0.0.1
+```
+
