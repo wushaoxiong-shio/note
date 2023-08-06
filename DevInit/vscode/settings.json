@@ -114,12 +114,6 @@
                     }
                 },
                 {
-                    "scope": "keyword.operator.comparison.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
                     "scope": "entity.name.function.definition.special.member.destructor.cpp",
                     "settings": {
                         "foreground": "#ABB2BF"
