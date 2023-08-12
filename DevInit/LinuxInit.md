@@ -217,5 +217,9 @@ update-grub
 
 ```shell
 export no_proxy=localhost,127.0.0.1
+
+# tmux 通过 -d 参数后台执行
+# tmux 发送命令给指定会话执行
+# tmux send-keys -t build "cd ${workspaceFolder} && /tool/bear -l/tool/libear.so make -j8" Enter
 ```
 
