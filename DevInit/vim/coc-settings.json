@@ -8,7 +8,7 @@
     // clangd的参数，和vscode参数可以共用
     "snippets.textmateSnippetsRoots": ["/root/code/snippets"],
     "clangd.arguments": [
-        "--compile-commands-dir=${workspaceFolder}/build",
+        "--compile-commands-dir=${workspaceFolder},${workspaceFolder}/build",
         "--background-index",
         "--clang-tidy",
         "--clang-tidy-checks=clang-analyzer-*,cppcoreguidelines-*,performance-*,bugprone-*,misc-*,google-*,modernize-*,readability-*,portability-*",
