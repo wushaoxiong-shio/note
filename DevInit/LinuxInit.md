@@ -92,7 +92,7 @@
     address 10.20.10.55
     gateway 10.20.10.1
     netmask 255.255.255.0
-    dns-nameservers 10.20.10.1
+    dns-serversname 10.20.10.1
     ```
 
 - 重启系统，配置生效

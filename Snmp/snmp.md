@@ -9,7 +9,7 @@
 - 安装前置软件包
 
     ```shell
-    apt install libperl-dev -y
+    apt install libperl-dev libssl-dev -y
     ```
 
 
