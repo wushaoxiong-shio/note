@@ -223,3 +223,15 @@ export no_proxy=localhost,127.0.0.1
 # tmux send-keys -t build "cd ${workspaceFolder} && /tool/bear -l/tool/libear.so make -j8" Enter
 ```
 
+# 九、设置 update-alternatives
+
+~~~shell
+# 先修改 /usr/bin/gcc 为 /usr/bin/gcc-10 ，防止覆盖，再创建统一链接 /usr/bin/gcc
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/x86_64-linux-gnu-gcc-10 50
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/x86_64-linux-gnu-gcc-9 50
+
+# update-alternatives --config gcc 选择版本号
+
+# update-alternatives --help 查看帮助手册
+~~~
+
