@@ -108,7 +108,7 @@
 
 - 下载二进制包
 
-> curl -OL https://nodejs.org/download/release/v16.10.0/node-v16.10.0-linux-x64.tar.gz
+> curl -OL https://nodejs.org/dist/v18.17.1/node-v18.17.1-linux-x64.tar.xz
 
 - 解压安装
 
