@@ -16,8 +16,11 @@
 - 编译选项
 
     ```shell
-    ./configure --prefix=/root/snmp-bin --enable-ipv6 --with-openssl --with-cflags="-g -O0" --with-mib-modules=test
+    ./configure --prefix=/root/code/net-snmp-5.8/build --with-openssl=internal --with-cflags="-g -O0" --with-default-snmp-version=2 --with-sys-contact=who@where --with-sys-location=shio --with-persistent-directory=/root/code/net-snmp-5.8/build --with-logfile=/root/code/net-snmp-5.8/build
+    
+    # 静态编译模块
+    --with-mib-modules=test
     ```
-
+    
     
 
