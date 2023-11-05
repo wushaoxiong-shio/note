@@ -25,5 +25,24 @@ make install
 
 update-grub
 
+
+
+# 
+dpkg --get-selections | grep linux
+
+apt --purge autoremove linux-image-5.10.0-22-amd64 -y
+
+
+
+
+
+
+
+
+
+
+
+
+
 ~~~
 
