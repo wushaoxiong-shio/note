@@ -7,6 +7,9 @@ apt install flex bison libelf-dev libssl-dev bc -y
 make distclean
 make mrproper
 
+# default
+make x86_64_defconfig
+
 cp /boot/config-$(uname -r) .config
 
 make menuconfig
