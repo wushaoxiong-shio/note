@@ -7,6 +7,12 @@ apt install flex bison libelf-dev libssl-dev bc -y
 make distclean or make mrproper
 
 cp /boot/config-$(uname -r) .config or make menuconfig
+# default
+make x86_64_defconfig
+
+cp /boot/config-$(uname -r) .config
+
+make menuconfig
 
 vim .config
 # CONFIG_DEBUG_INFO_BTF 调试、性能分析工具开关，编译需要的依赖库在 Debian11上版本太低，不好安装，用不到 BTF 直接关闭即可
