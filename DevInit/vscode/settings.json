@@ -1,5 +1,5 @@
 {
-    "editor.fontFamily": "DejaVu Sans Mono",
+    "editor.fontFamily": "DejaVu Sans Mono, 霞鹜文楷等宽",
     "workbench.colorTheme": "One Dark Pro",
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.fontSize": 16,
@@ -37,7 +37,7 @@
     ],
     "clangd.fallbackFlags": [
         "-xc",
-        "-std=c11",
+        "-std=c17",
         "-xc++",
         "-std=c++17"
     ],
@@ -57,117 +57,10 @@
             "comments": "#56A6AE",
             "keywords": {
                 "fontStyle": "italic"
-            },
-            "textMateRules": [
-                {
-                    "scope": "keyword.operator.bitwise.shift.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "keyword.operator.assignment.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "keyword.operator.bitwise.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "storage.modifier.reference.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "keyword.operator.arithmetic.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "keyword.operator.increment.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "keyword.operator.ternary.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "meta.preprocessor.macro.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "support.function.cpp",
-                    "settings": {
-                        "foreground": "#61afef"
-                    }
-                },
-                {
-                    "scope": "entity.name.function.definition.special.member.destructor.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "storage.modifier.pointer.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "variable.parameter.cpp",
-                    "settings": {
-                        "foreground": "#D19A66"
-                    }
-                },
-                {
-                    "scope": "variable.other.readwrite.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "keyword.operator.decrement.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "entity.name.namespace.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "keyword.operator.assignment.compound.bitwise.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "constant.character.escape.line-continuation.cpp",
-                    "settings": {
-                        "foreground": "#ABB2BF"
-                    }
-                },
-                {
-                    "scope": "keyword.operator.logical.cpp",
-                    "settings": {
-                        "foreground": "#C678DD"
-                    }
-                }
-            ]
+            }
         }
-    }
+    },
+    "codesnap.shutterAction": "copy",
+    "codesnap.target": "window"
+
 }

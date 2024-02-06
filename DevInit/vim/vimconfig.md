@@ -37,7 +37,7 @@
 > cd ./vim
 
 ```shell
-./configure --with-features=huge --enable-multibyte --enable-python3interp=yes --prefix=/usr/local/vim9 --enable-cscope
+./configure --with-features=huge --enable-multibyte --enable-python3interp=yes --prefix=/usr/local/vim9 --enable-cscope --disable-acl
 ```
 
 
