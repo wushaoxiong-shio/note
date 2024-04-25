@@ -61,6 +61,13 @@ mount | grep tmpfs
 
 # 卸载 tmpfs 文件系统： 当不再需要使用时，可以使用 umount 命令卸载 tmpfs 文件系统
 umount /mnt/tmpfs
+
+# 添加重启生效
+vim /etc/fstab
+# 添加一行
+tmpfs   /mnt/tmpfs  tmpfs   defaults,size=2G    0   0
+# 保存重启后生效
+
 ```
 
 
