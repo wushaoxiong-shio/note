@@ -41,3 +41,59 @@ alias mkernel='make -j32 && make modules_install && make install && update-grub'
 
 ~~~
 
+
+
+## 使用 tmpfs 虚拟文件系统加快编译
+
+```shell
+# 创建挂载点： 首先，需要创建一个目录作为挂载点，用来挂载 tmpfs 文件系统
+mkdir /mnt/tmpfs
+# 挂载 tmpfs 文件系统： 使用 mount 命令来挂载 tmpfs 文件系统
+mount -t tmpfs -o size=512M tmpfs /mnt/tmpfs
+
+-t tmpfs：指定文件系统类型为 tmpfs。
+-o size=512M：设置 tmpfs 的大小为 512MB，根据实际需要调整大小。
+tmpfs：文件系统类型即 df -h 显示的文件系统名。
+/mnt/tmpfs：挂载点路径
+
+# 查看挂载信息： 可以使用 mount 命令查看已挂载的文件系统信息
+mount | grep tmpfs
+
+# 卸载 tmpfs 文件系统： 当不再需要使用时，可以使用 umount 命令卸载 tmpfs 文件系统
+umount /mnt/tmpfs
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
