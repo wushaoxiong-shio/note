@@ -6,5 +6,6 @@
   "spellcheck": false,
   "useTab": false,
   "smartIndentList": false,
-  "propertiesInDocument": "hidden"
+  "propertiesInDocument": "hidden",
+  "promptDelete": false
 }

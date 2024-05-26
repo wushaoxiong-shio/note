@@ -65,8 +65,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -86,7 +85,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DevInit/LinuxInit.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +101,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "DevInit/LinuxInit.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +123,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "DevInit/LinuxInit.md"
+                "file": "DevInit/Debian自动化安装.md"
               }
             }
           }
@@ -147,6 +144,15 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "4003ed90cdc27f36",
-  "lastOpenFiles": []
+  "active": "8ad4d2cfe52bbda4",
+  "lastOpenFiles": [
+    "DevInit/init.sh",
+    "DevInit/vim/init.sh",
+    "DevInit/LinuxInit.md",
+    "DevInit/Debian自动化安装.md",
+    "DevInit/Gitlab.md",
+    "DevInit/mysql.md",
+    "DevInit/redis.md",
+    "DevInit/vim/vimconfig.md"
+  ]
 }
