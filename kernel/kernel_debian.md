@@ -29,8 +29,17 @@ make -j32
 make modules_install
 make install
 
-# 更新 grub
-update-grub
+# make install 会自动执行  update-grub
+# 不想更新 grup 则手动生成 initrd.img
+# 重新创建
+update-initramfs -c -k 5.10.25 -b /boot
+# 更新
+update-initramfs -u -k 5.10.25 -b /boot
+
+# 将 initrd.img 和 vmlinuz 替换到其他设备上的 /boot 
+# 将 /lib/modules/<version> 打包到其他设备解压
+# update-grub
+
 
 # 生成索引
 bear -- make -C /root/code/linux-5.10.26 M=`pwd` -j32
@@ -72,7 +81,47 @@ tmpfs   /mnt/tmpfs  tmpfs   defaults,size=2G    0   0
 
 
 
+## 编译安装 DPDK
+```
 
+# 内核编译要打开 CONFIG_VFIO_NOIOMMU 选项
+
+apt install meson pkg-config python3-pip ninja-build libnuma-dev python3-pyelftools -y
+
+meson setup build --prefix=/root/code/dpdk/install
+
+cd build
+
+ninja -j32
+ninja install
+
+export PKG_CONFIG_PATH=/root/code/dpdk/install/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
+
+# cd build
+# meson configure -Dexamples=helloworld
+# ninja
+# examples/dpdk-helloworld -l 0-1 -n 2
+
+
+# vim /etc/default/grub，VM虚拟机需要加 nopku transparent_hugepage=never
+GRUB_CMDLINE_LINUX="nopku transparent_hugepage=never default_hugepagesz=1G hugepagesz=1G hugepages=2"
+
+update-grub
+
+mkdir -p /mnt/hugemem
+mount -t hugetlbfs nodev /mnt/hugemem
+
+# vim /etc/fstab
+nodev /mnt/hugemem hugetlbfs defaults 0 0
+
+modprobe vfio enable_unsafe_noiommu_mode=1
+modprobe vfio-pci
+/root/code/dpdk/usertools/dpdk-devbind.py --status
+#/root/code/dpdk/usertools/dpdk-devbind.py --bind=vfio-pci 04:00.1
+/root/code/dpdk/usertools/dpdk-devbind.py --bind=vfio-pci ens33
+
+
+```
 
 
 
