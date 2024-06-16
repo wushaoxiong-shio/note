@@ -209,6 +209,10 @@
 vim /etc/default/grub
 # 将 grub 超时时间设置为0
 GRUB_TIMEOUT=0
+
+# 设置网口名从 eth0 开始
+GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"
+
 # 保存 grub 配置，使其生效
 update-grub
 ```

@@ -83,7 +83,7 @@ tmpfs   /mnt/tmpfs  tmpfs   defaults,size=2G    0   0
 
 ## 编译安装 DPDK
 ```
-
+# 虚拟机网卡驱动要改成 vmxnet3 在 Debian.vmx 中改
 # 内核编译要打开 CONFIG_VFIO_NOIOMMU 选项
 
 apt install meson pkg-config python3-pip ninja-build libnuma-dev python3-pyelftools -y
@@ -118,12 +118,44 @@ modprobe vfio enable_unsafe_noiommu_mode=1
 modprobe vfio-pci
 /root/code/dpdk/usertools/dpdk-devbind.py --status
 #/root/code/dpdk/usertools/dpdk-devbind.py --bind=vfio-pci 04:00.1
+ifconfig ens33 down
 /root/code/dpdk/usertools/dpdk-devbind.py --bind=vfio-pci ens33
 
 
 ```
 
+## dperf
 
+```
+# 检查中断绑定（IRQ Affinity）
+# 中断绑定（IRQ Affinity）决定了哪些 CPU 核心处理哪些中断,如果中断没有均匀分布到多个 CPU 核心，会导致负载集中在一个核心上
+# 查看 中断号 结果在第一列
+cat /proc/interrupts
+
+# 通过写入 `/proc/irq/<IRQ-number>/smp_affinity` 文件来设置中断绑定
+echo ff > /proc/irq/16/smp_affinity
+# ff 表示八个 CPU 核心（0-7）具体的掩码可以根据需要调整
+
+# 使用 `ethtool` 查看和配置 RSS
+ethtool -x ens224
+# 将接收和发送队列都设置为8
+ethtool -L ens224 combined 8 
+
+# RPS 将网络接收流量在多个 CPU 核心之间分配
+# 配置 Receive Packet Steering (RPS) 为每个接收队列配置 RPS 假设有 8 个接收队列
+# 设置 rps
+echo ffffffff > /sys/class/net/ens224/queues/rx-0/rps_cpus
+echo ffffffff > /sys/class/net/ens224/queues/rx-1/rps_cpus
+echo ffffffff > /sys/class/net/ens224/queues/rx-2/rps_cpus
+echo ffffffff > /sys/class/net/ens224/queues/rx-3/rps_cpus
+echo ffffffff > /sys/class/net/ens224/queues/rx-4/rps_cpus
+echo ffffffff > /sys/class/net/ens224/queues/rx-5/rps_cpus
+echo ffffffff > /sys/class/net/ens224/queues/rx-6/rps_cpus
+echo ffffffff > /sys/class/net/ens224/queues/rx-7/rps_cpus
+
+
+
+```
 
 
 
