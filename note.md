@@ -10,7 +10,7 @@ esxcli storage core device smart get -d t10.NVMe____WD_Blue_SN570_2TB_SSD_______
 
 alias mkernel='make -j32 && make modules_install && make install && update-grub'
 
-apt install iptables conntrack netcat -y
+apt install vsftpd ftp zip unzip tcpdump iptables conntrack netcat -y
 
 modprobe -v iptable_nat
 
