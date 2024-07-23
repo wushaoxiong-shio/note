@@ -51,14 +51,14 @@
 - 替换成如下
 
     ```shell
-    deb https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
-    deb-src https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
-    deb https://mirrors.aliyun.com/debian-security/ bullseye-security main
-    deb-src https://mirrors.aliyun.com/debian-security/ bullseye-security main
-    deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
-    deb-src https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
-    deb https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
-    deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+deb https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+deb-src https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+deb https://mirrors.aliyun.com/debian-security/ bullseye-security main
+deb-src https://mirrors.aliyun.com/debian-security/ bullseye-security main
+deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+deb-src https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+deb https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
     ```
 
 - 软件更新
@@ -71,7 +71,7 @@
 - 下载常用软件
 
     ```shell
-    apt install gcc g++ make git gdb gcc-9 g++-9 htop sshpass bear tree zsh curl -y
+    apt install gcc g++ make git gdb gcc-9 g++-9 htop sshpass bear tree zsh curl build-essential linux-headers-$(uname -r) -y
     ```
 
     
@@ -185,6 +185,15 @@
     ssh-keygen -R ipadress
     ```
 
+- 配置ssh跳板机
+```shell
+# 配置文件添加开关
+GatewayPorts yes
+
+# 跳板机IP 172.16.254.61，不能配置免密
+ssh -L 0.0.0.0:23:172.16.254.201:22 -Nf 172.16.254.61
+```
+
 ## 六、配置 git
 
 - 添加用户名和邮箱
@@ -239,3 +248,26 @@ update-alternatives --install /usr/bin/gcc gcc /usr/bin/x86_64-linux-gnu-gcc-9 5
 # update-alternatives --help 查看帮助手册
 ~~~
 
+# 设置开启自启动脚步
+```shell
+cd /etc/init.d/
+vim test
+chmod +x test
+update-rc.d test defaults
+
+# debian要求文件头部有启动信息，脚本顶部添加，可以在当前目录其他的脚步里面拷贝过来
+# Provides 字段要唯一
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          test
+... ...
+### END INIT INFO
+
+# 最后一定要正常退出
+exit 0
+
+# 取消自启动
+update-rc.d -f test remove
+
+
+```
