@@ -1,17 +1,20 @@
 #!/bin/bash
 
-ETH_NAME=ens32
-STATIC_IP=10.20.10.50
+ETH_NAME=eth0
+STATIC_IP=10.20.10.25
 GATEWAY=10.20.10.1
 DNS=10.20.10.1
 PROXY=10.20.10.20
 
-sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/g' /etc/default/grub
+set -x
 
-cp -Rf ./sources.list /etc/apt/sources.list
+sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/g' /etc/default/grub
+sed -i 's/GRUB_CMDLINE_LINUX=\"initrd=\/install\/gtk\/initrd.gz\"/GRUB_CMDLINE_LINUX=\"net.ifnames=0 biosdevname=0\"/g' /etc/default/grub
+update-grub
+
+cp -f ./sources.list /etc/apt/sources.list
 echo "" > /etc/apt/apt.conf
 apt update -y && apt upgrade -y
-update-grub
 
 apt install gcc g++ make git gdb htop sshpass bear tree zsh curl -y
 apt install python3-dev libncurses-dev ripgrep universal-ctags -y
@@ -26,7 +29,7 @@ echo "" >> /etc/profile
 echo "export http_proxy=http://${PROXY}:7890" >> /etc/profile
 echo "export https_proxy=http://${PROXY}:7890" >> /etc/profile
 echo "export no_proxy=localhost,127.0.0.1,${STATIC_IP}" >> /etc/profile
-echo "export PATH=/usr/local/cmake/bin:/usr/lib/llvm-15/bin:\$PATH" >> /etc/profile
+echo "export PATH=/usr/lib/llvm-15/bin:\$PATH" >> /etc/profile
 
 source /etc/profile
 
@@ -41,18 +44,18 @@ echo "iface ${ETH_NAME} inet static" >> /etc/network/interfaces
 echo "address ${STATIC_IP}" >> /etc/network/interfaces
 echo "gateway ${GATEWAY}" >> /etc/network/interfaces
 echo "netmask 255.255.255.0" >> /etc/network/interfaces
-echo "dns-nameservers ${DNS}" >> /etc/network/interfaces
+echo "nameservers ${DNS}" >> /etc/network/interfaces
 
 echo "nameserver ${DNS}" > /etc/resolv.conf
 
-cp -Rf ./.zshrc /root/.zshrc
-cp -Rf ./.oh-my-zsh /root/.oh-my-zsh
+cp -f ./.zshrc /root/.zshrc
+cp -rf ./.oh-my-zsh /root/.oh-my-zsh
 
 sed -i "s/#no_proxy/export no_proxy=localhost,127.0.0.1,${STATIC_IP}/g" /root/.zshrc
 sed -i "s/#http_proxy/export http_proxy=http:\/\/${PROXY}:7890/g" /root/.zshrc
 sed -i "s/#https_proxy/export https_proxy=http:\/\/${PROXY}:7890/g" /root/.zshrc
 
-cp -Rf ./.vimrc /root/.vimrc
+cp -f ./.vimrc /root/.vimrc
 
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
