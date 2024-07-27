@@ -16,12 +16,9 @@ cp -f ./sources.list /etc/apt/sources.list
 echo "" > /etc/apt/apt.conf
 apt update -y && apt upgrade -y
 
-apt install gcc g++ make git gdb htop sshpass bear tree zsh curl -y
-apt install python3-dev libncurses-dev ripgrep universal-ctags -y
-apt install lsb-release wget software-properties-common gnupg -y
-apt install flex bison libelf-dev bc -y
-apt install libperl-dev libssl-dev -y
-apt install iptables conntrack netcat tcpdump linux-perf ftp vsftpd -y
+apt install gcc g++ git gdb make cmake bear clangd-16 htop sshpass tree zsh curl wget vim ssh zip unzip -y
+apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep -y
+apt install libperl-dev libssl-dev flex bison libelf-dev bc iptables conntrack netcat tcpdump linux-perf -y
 
 chsh -s /bin/zsh
 
@@ -29,7 +26,6 @@ echo "" >> /etc/profile
 echo "export http_proxy=http://${PROXY}:7890" >> /etc/profile
 echo "export https_proxy=http://${PROXY}:7890" >> /etc/profile
 echo "export no_proxy=localhost,127.0.0.1,${STATIC_IP}" >> /etc/profile
-echo "export PATH=/usr/lib/llvm-15/bin:\$PATH" >> /etc/profile
 
 source /etc/profile
 
@@ -68,5 +64,3 @@ touch /root/.ssh/authorized_keys
 
 git config --global user.name "shio"
 git config --global user.email "wushaoxiong.shio@gmail.com"
-
-./llvm.sh 15

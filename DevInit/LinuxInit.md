@@ -71,7 +71,9 @@ deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free cont
 - 下载常用软件
 
     ```shell
-    apt install gcc g++ make git gdb gcc-9 g++-9 htop sshpass bear tree zsh curl build-essential linux-headers-$(uname -r) -y
+    apt install gcc g++ git gdb make cmake bear clangd-16 htop sshpass tree zsh curl wget vim ssh zip unzip -y
+    apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep -y
+    apt install libperl-dev libssl-dev flex bison libelf-dev bc iptables conntrack netcat tcpdump linux-perf -y
     ```
 
     
