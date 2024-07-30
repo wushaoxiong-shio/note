@@ -14,6 +14,7 @@ cp /boot/config-$(uname -r) .config
 
 make menuconfig
 
+# deiban12 不需要改字段
 vim .config
 # CONFIG_DEBUG_INFO_BTF 调试、性能分析工具开关，编译需要的依赖库在 Debian11上版本太低，不好安装，用不到 BTF 直接关闭即可
 CONFIG_DEBUG_INFO_BTF=n
@@ -25,7 +26,7 @@ make -j12 deb-pkg
 dpkg -i ../*.deb
 
 # 直接源码本地安装
-# 编译低版本 5.1x 的内核不能使用高版本的编译器，需要11及以下
+# 编译低版本 5.1x 的内核不能使用高版本的编译器，需要11及以下，不然会报 -Wno-error=use-after-free
 # 手动指定使用 gcc-11
 make -j12 HOSTCC=gcc-11 CC=gcc-11
 make modules_install
