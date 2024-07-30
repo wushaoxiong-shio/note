@@ -21,11 +21,13 @@ CONFIG_DEBUG_INFO_BTF=n
 CONFIG_SYSTEM_TRUSTED_KEYS=""
 
 # 打成 deb 包形式，可以给其他设备安装
-make -j32 deb-pkg
+make -j12 deb-pkg
 dpkg -i ../*.deb
 
 # 直接源码本地安装
-make -j32
+# 编译低版本 5.1x 的内核不能使用高版本的编译器，需要11及以下
+# 手动指定使用 gcc-11
+make -j12 HOSTCC=gcc-11 CC=gcc-11
 make modules_install
 make install
 
@@ -42,10 +44,10 @@ update-initramfs -u -k 5.10.25 -b /boot
 
 
 # 生成索引
-bear -- make -C /root/code/linux-5.10.26 M=`pwd` -j32
+bear -- make -C /root/code/linux-5.10.26 M=`pwd` -j12
 
 # 
-alias mkernel='make -j32 && make modules_install && make install && update-grub'
+alias mkernel='make -j12 && make modules_install && make install && update-grub'
 
 
 ~~~

@@ -16,7 +16,7 @@ cp -f ./sources.list /etc/apt/sources.list
 echo "" > /etc/apt/apt.conf
 apt update -y && apt upgrade -y
 
-apt install gcc g++ git gdb make cmake bear clangd-16 htop sshpass tree zsh curl wget vim ssh zip unzip -y
+apt install gcc g++ gcc-11 g++-11 git gdb make cmake bear clangd-16 htop sshpass tree zsh curl wget vim ssh zip unzip -y
 apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep net-tools -y
 apt install libperl-dev libssl-dev flex bison libelf-dev bc iptables conntrack tcpdump linux-perf -y
 
