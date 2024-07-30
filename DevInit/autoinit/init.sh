@@ -17,8 +17,8 @@ echo "" > /etc/apt/apt.conf
 apt update -y && apt upgrade -y
 
 apt install gcc g++ git gdb make cmake bear clangd-16 htop sshpass tree zsh curl wget vim ssh zip unzip -y
-apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep -y
-apt install libperl-dev libssl-dev flex bison libelf-dev bc iptables conntrack netcat tcpdump linux-perf -y
+apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep net-tools -y
+apt install libperl-dev libssl-dev flex bison libelf-dev bc iptables conntrack tcpdump linux-perf -y
 
 chsh -s /bin/zsh
 
@@ -26,6 +26,7 @@ echo "" >> /etc/profile
 echo "export http_proxy=http://${PROXY}:7890" >> /etc/profile
 echo "export https_proxy=http://${PROXY}:7890" >> /etc/profile
 echo "export no_proxy=localhost,127.0.0.1,${STATIC_IP}" >> /etc/profile
+echo "export PATH=/usr/lib/llvm-16/bin/:\$PATH" >> /etc/profile
 
 source /etc/profile
 
