@@ -1,6 +1,7 @@
 # Debian 11
 
-~~~shell
+
+```shell
 
 apt install flex bison libelf-dev libssl-dev bc -y
 
@@ -14,16 +15,13 @@ cp /boot/config-$(uname -r) .config
 
 make menuconfig
 
-# deiban12 不需要改字段
+# 修改编译选项
 vim .config
-# CONFIG_DEBUG_INFO_BTF 调试、性能分析工具开关，编译需要的依赖库在 Debian11上版本太低，不好安装，用不到 BTF 直接关闭即可
+# CONFIG_DEBUG_INFO_BTF 调试、性能分析工具开关，编译需要的依赖库在 Debian上版本太低，不好安装，用不到 BTF 直接关闭即可
 CONFIG_DEBUG_INFO_BTF=n
 # 字段值置空
 CONFIG_SYSTEM_TRUSTED_KEYS=""
 
-# 打成 deb 包形式，可以给其他设备安装
-make -j12 deb-pkg
-dpkg -i ../*.deb
 
 # 直接源码本地安装
 # 编译低版本 5.1x 的内核不能使用高版本的编译器，需要11及以下，不然会报 -Wno-error=use-after-free
@@ -51,13 +49,10 @@ bear -- make -C /root/code/linux-5.10.26 M=`pwd` -j12
 alias mkernel='make -j12 && make modules_install && make install && update-grub'
 
 
-~~~
-
-
 
 ## 使用 tmpfs 虚拟文件系统加快编译
 
-```shell
+
 # 创建挂载点： 首先，需要创建一个目录作为挂载点，用来挂载 tmpfs 文件系统
 mkdir /mnt/tmpfs
 # 挂载 tmpfs 文件系统： 使用 mount 命令来挂载 tmpfs 文件系统
@@ -85,7 +80,7 @@ tmpfs   /mnt/tmpfs  tmpfs   defaults,size=2G    0   0
 
 
 ## 编译安装 DPDK
-```
+```shell
 # 虚拟机网卡驱动要改成 vmxnet3 在 Debian.vmx 中改
 # 内核编译要打开 CONFIG_VFIO_NOIOMMU 选项
 
@@ -129,7 +124,7 @@ ifconfig ens33 down
 
 ## dperf
 
-```
+```shell
 # 检查中断绑定（IRQ Affinity）
 # 中断绑定（IRQ Affinity）决定了哪些 CPU 核心处理哪些中断,如果中断没有均匀分布到多个 CPU 核心，会导致负载集中在一个核心上
 # 查看 中断号 结果在第一列

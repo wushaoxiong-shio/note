@@ -64,8 +64,7 @@ deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free cont
 - 软件更新
 
 ```shell
-apt update -y
-apt upgrade -y
+apt update -y && apt upgrade -y
 ```
 
 - 下载常用软件
@@ -73,7 +72,7 @@ apt upgrade -y
 ```shell
 apt install gcc g++ git gdb make cmake bear clangd-16 htop sshpass tree zsh curl wget vim ssh zip unzip -y
 apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep xinetd telnetd -y
-apt install libperl-dev libssl-dev flex bison libelf-dev bc iptables conntrack netcat tcpdump linux-perf -y
+apt install libperl-dev libssl-dev flex bison libelf-dev bc iptables conntrack netcat tcpdump linux-perf strace -y
 ```
 
     
