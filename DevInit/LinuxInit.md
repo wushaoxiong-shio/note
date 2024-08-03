@@ -72,7 +72,7 @@ deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free cont
 
     ```shell
     apt install gcc g++ git gdb make cmake bear clangd-16 htop sshpass tree zsh curl wget vim ssh zip unzip -y
-    apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep -y
+    apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep xinetd telnetd -y
     apt install libperl-dev libssl-dev flex bison libelf-dev bc iptables conntrack netcat tcpdump linux-perf -y
     ```
 
@@ -270,6 +270,35 @@ exit 0
 
 # 取消自启动
 update-rc.d -f test remove
+
+
+```
+
+## 配置 Telnet
+```shell
+
+# 默认端口 23
+apt install xinetd telnetd -y
+
+# 编辑配置文件
+vim /etc/xinetd.d/telnet
+
+service telnet
+{
+    disable = no
+    flags = REUSE
+    socket_type = stream
+    wait = no
+    user = root
+    server = /usr/sbin/telnetd
+    log_on_failure += USERID
+}
+
+# 开启Telnetd
+systemctl restart xinetd
+
+# 添加开机自启动
+systemctl enable xinetd
 
 
 ```
