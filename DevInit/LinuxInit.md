@@ -108,6 +108,12 @@ reboot
 
 ```shell
 "cursorColor": "#7673BB"
+
+# iterm2
+Appearance -> General -> Theme -> Minimal
+Profiles -> Terminal -> shell Integration -> show mark indicators
+
+
 ```
 
 - 开启系统代理，打开配置文件添加环境变量

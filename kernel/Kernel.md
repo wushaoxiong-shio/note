@@ -77,7 +77,17 @@ tmpfs   /mnt/tmpfs  tmpfs   defaults,size=2G    0   0
 
 ```
 
+# 安装编译 GCC
+```shell
 
+# 官网下载源码
+# 安装依赖库
+cd gcc
+./contrib/download_prerequisites
+
+./configure --prefix=/usr/local/gcc-8.4 --disable-multilib --enable-languages=c,c++
+
+```
 
 ## 编译安装 DPDK
 ```shell
