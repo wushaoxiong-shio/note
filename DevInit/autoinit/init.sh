@@ -9,7 +9,7 @@ PROXY=10.20.10.20
 set -x
 
 sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/g' /etc/default/grub
-sed -i 's/GRUB_CMDLINE_LINUX=\"initrd=\/install\/gtk\/initrd.gz\"/GRUB_CMDLINE_LINUX=\"net.ifnames=0 biosdevname=0\"/g' /etc/default/grub
+sed -i 's/GRUB_CMDLINE_LINUX=\"\"/GRUB_CMDLINE_LINUX=\"net.ifnames=0 biosdevname=0\"/g' /etc/default/grub
 update-grub
 
 cp -f ./sources.list /etc/apt/sources.list
