@@ -9,7 +9,7 @@ make distclean or make mrproper
 
 cp /boot/config-$(uname -r) .config or make menuconfig
 # default
-make x86_64_defconfig
+make x86_64_defconfig | make localmodconfig
 
 cp /boot/config-$(uname -r) .config
 
