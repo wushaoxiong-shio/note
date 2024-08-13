@@ -16,16 +16,16 @@ cp -f ./sources.list /etc/apt/sources.list
 echo "" > /etc/apt/apt.conf
 apt update -y && apt upgrade -y
 
-apt install gcc g++ gcc-11 g++-11 git gdb make cmake bear clangd-16 htop sshpass tree zsh curl wget vim ssh zip unzip -y
-apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep net-tools xinetd telnetd -y
+apt install gcc g++ git gdb make cmake bear clangd-16 htop sshpass tree zsh curl wget vim ssh zip unzip -y
+apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep net-tools dwarves -y
 apt install libperl-dev libssl-dev flex bison libelf-dev bc iptables conntrack tcpdump linux-perf strace -y
 
 chsh -s /bin/zsh
 
 echo "" >> /etc/profile
-echo "export http_proxy=http://${PROXY}:7890" >> /etc/profile
-echo "export https_proxy=http://${PROXY}:7890" >> /etc/profile
-echo "export no_proxy=localhost,127.0.0.1,${STATIC_IP}" >> /etc/profile
+echo "#export http_proxy=http://${PROXY}:7890" >> /etc/profile
+echo "#export https_proxy=http://${PROXY}:7890" >> /etc/profile
+echo "export no_proxy=localhost,127.0.0.1" >> /etc/profile
 echo "export PATH=/usr/lib/llvm-16/bin/:\$PATH" >> /etc/profile
 
 source /etc/profile
@@ -48,9 +48,8 @@ echo "nameserver ${DNS}" > /etc/resolv.conf
 cp -f ./.zshrc /root/.zshrc
 cp -rf ./.oh-my-zsh /root/.oh-my-zsh
 
-sed -i "s/#no_proxy/export no_proxy=localhost,127.0.0.1,${STATIC_IP}/g" /root/.zshrc
-sed -i "s/#http_proxy/export http_proxy=http:\/\/${PROXY}:7890/g" /root/.zshrc
-sed -i "s/#https_proxy/export https_proxy=http:\/\/${PROXY}:7890/g" /root/.zshrc
+sed -i "s/#http_proxy/#export http_proxy=http:\/\/${PROXY}:7890/g" /root/.zshrc
+sed -i "s/#https_proxy/#export https_proxy=http:\/\/${PROXY}:7890/g" /root/.zshrc
 
 cp -f ./.vimrc /root/.vimrc
 

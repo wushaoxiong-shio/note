@@ -71,8 +71,8 @@ apt update -y && apt upgrade -y
 
 ```shell
 apt install gcc g++ git gdb make cmake bear clangd-16 htop sshpass tree zsh curl wget vim ssh zip unzip -y
-apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep xinetd telnetd -y
-apt install libperl-dev libssl-dev flex bison libelf-dev bc iptables conntrack netcat tcpdump linux-perf strace -y
+apt install build-essential linux-headers-$(uname -r) python3-dev libncurses-dev ripgrep net-tools dwarves -y
+apt install libperl-dev libssl-dev flex bison libelf-dev bc iptables conntrack tcpdump linux-perf strace -y
 ```
 
     
