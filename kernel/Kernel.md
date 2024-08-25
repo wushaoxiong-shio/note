@@ -77,17 +77,6 @@ tmpfs   /mnt/tmpfs  tmpfs   defaults,size=2G    0   0
 
 ```
 
-# 安装编译 GCC
-```shell
-
-# 官网下载源码
-# 安装依赖库
-cd gcc
-./contrib/download_prerequisites
-
-./configure --prefix=/usr/local/gcc-8.4 --disable-multilib --enable-languages=c,c++
-
-```
 
 ## 编译安装 DPDK
 ```shell
@@ -103,7 +92,7 @@ cd build
 ninja -j32
 ninja install
 
-export PKG_CONFIG_PATH=/root/code/dpdk/install/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
+export PKG_CONFIG_PATH=/usr/local/dpdk/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
 
 # cd build
 # meson configure -Dexamples=helloworld
@@ -124,10 +113,18 @@ nodev /mnt/hugemem hugetlbfs defaults 0 0
 
 modprobe vfio enable_unsafe_noiommu_mode=1
 modprobe vfio-pci
-/root/code/dpdk/usertools/dpdk-devbind.py --status
-#/root/code/dpdk/usertools/dpdk-devbind.py --bind=vfio-pci 04:00.1
-ifconfig ens33 down
-/root/code/dpdk/usertools/dpdk-devbind.py --bind=vfio-pci ens33
+/usr/local/dpdk/bin/dpdk-devbind.py -s
+# /usr/local/dpdk/bin/dpdk-devbind.py --status
+# /root/code/dpdk/usertools/dpdk-devbind.py --bind=vfio-pci 04:00.1
+ifconfig eth1 down
+/usr/local/dpdk/bin/dpdk-devbind.py -b vfio-pci eth1
+
+# 恢复绑定接口
+/usr/local/dpdk/bin/dpdk-devbind.py -u 0000:0b:00.0
+/usr/local/dpdk/bin/dpdk-devbind.py -b vmxnet3 0000:0b:00.0
+
+# 重启网络系统
+systemctl restart networking
 
 
 ```
