@@ -83,7 +83,7 @@ tmpfs   /mnt/tmpfs  tmpfs   defaults,size=2G    0   0
 # 虚拟机网卡驱动要改成 vmxnet3 在 Debian.vmx 中改
 # 内核编译要打开 CONFIG_VFIO_NOIOMMU 选项
 
-apt install meson pkg-config python3-pip ninja-build libnuma-dev python3-pyelftools -y
+apt install meson pkg-config python3-pip ninja-build libnuma-dev python3-pyelftools libnuma-dev -y
 
 meson setup build --prefix=/root/code/dpdk/install
 
@@ -100,7 +100,7 @@ export PKG_CONFIG_PATH=/usr/local/dpdk/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFI
 # examples/dpdk-helloworld -l 0-1 -n 2
 
 
-# vim /etc/default/grub，VM虚拟机需要加 nopku transparent_hugepage=never
+# vim /etc/default/grub，VM虚拟机需要加 nopku
 GRUB_CMDLINE_LINUX="nopku transparent_hugepage=never default_hugepagesz=1G hugepagesz=1G hugepages=2"
 
 update-grub
@@ -125,6 +125,11 @@ ifconfig eth1 down
 
 # 重启网络系统
 systemctl restart networking
+
+# Mellanox 网卡官方工具包安装命令 --force 强制安装
+# --distro debian12.5 是工具包支持的系统，用来忽略操作系统版本
+./mlnxofedinstall --all --distro debian12.5 --force
+
 
 
 ```
