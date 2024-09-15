@@ -264,6 +264,7 @@ chmod +x test
 update-rc.d test defaults
 
 # debian要求文件头部有启动信息，脚本顶部添加，可以在当前目录其他的脚步里面拷贝过来
+# 字段中间要用 tab 而不能是四个空格
 # Provides 字段要唯一
 #!/bin/sh
 ### BEGIN INIT INFO
@@ -276,13 +277,41 @@ exit 0
 
 # 取消自启动
 update-rc.d -f test remove
+```
 
+# 配置示例
+```shell
+vim /etc/init.d/netns_init
 
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:		netns_init
+# Required-Start:
+# Required-Stop:
+# Default-Start:
+# Default-Stop:		2 3 4 5
+# Short-Description:	netns_init
+### END INIT INFO
+
+exec > /tmp/netns_init.log 2>&1
+set -ex
+
+ip netns add ns1
+ip link set dev eth1 netns ns1
+ip netns exec ns1 ip addr add 1.1.1.10/24 dev eth1
+ip netns exec ns1 ip link set eth1 up
+
+ip netns add ns2
+ip link set dev eth2 netns ns2
+ip netns exec ns2 ip addr add 2.2.2.20/24 dev eth2
+ip netns exec ns2 ip link set eth2 up
+
+exit 0
 ```
 
 ## 配置 Telnet
 ```shell
-
 # 默认端口 23
 apt install xinetd telnetd -y
 
@@ -305,6 +334,4 @@ systemctl restart xinetd
 
 # 添加开机自启动
 systemctl enable xinetd
-
-
 ```
