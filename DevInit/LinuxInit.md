@@ -289,9 +289,8 @@ vim /etc/init.d/netns_init
 # Provides:		netns_init
 # Required-Start:
 # Required-Stop:
-# Default-Start:
-# Default-Stop:		2 3 4 5
-# Short-Description:	netns_init
+# Default-Start:	2 3 4 5
+# Default-Stop:
 ### END INIT INFO
 
 exec > /tmp/netns_init.log 2>&1
