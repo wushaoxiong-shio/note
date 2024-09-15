@@ -275,6 +275,12 @@ update-rc.d test defaults
 # 最后一定要正常退出
 exit 0
 
+# 查看是否加载成功
+ls /etc/rc*.d
+# 输出 S01netns_init 表示加载成功
+# S 开头的符号链接：表示系统在进入该运行级别时启动该服务（Start）NN 是两位数字，表示启动顺序。数字越小，启动顺序越靠前
+# K 开头的符号链接：表示系统在离开该运行级别时关闭该服务（Kill）NN 也表示关闭顺序，数字越小，关闭顺序越靠前
+
 # 取消自启动
 update-rc.d -f test remove
 ```
