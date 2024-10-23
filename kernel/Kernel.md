@@ -105,11 +105,6 @@ GRUB_CMDLINE_LINUX="nopku transparent_hugepage=never default_hugepagesz=1G hugep
 
 update-grub
 
-mkdir -p /mnt/hugemem
-mount -t hugetlbfs nodev /mnt/hugemem
-
-# vim /etc/fstab
-nodev /mnt/hugemem hugetlbfs defaults 0 0
 
 modprobe vfio enable_unsafe_noiommu_mode=1
 modprobe vfio-pci
@@ -119,17 +114,16 @@ modprobe vfio-pci
 ifconfig eth1 down
 /usr/local/dpdk/bin/dpdk-devbind.py -b vfio-pci eth1
 
-# 恢复绑定接口
-/usr/local/dpdk/bin/dpdk-devbind.py -u 0000:0b:00.0
-/usr/local/dpdk/bin/dpdk-devbind.py -b vmxnet3 0000:0b:00.0
-
-# 重启网络系统
-systemctl restart networking
 
 # Mellanox 网卡官方工具包安装命令 --force 强制安装
 # --distro debian12.5 是工具包支持的系统，用来忽略操作系统版本
 ./mlnxofedinstall --all --distro debian12.5 --force
 
+# 编译替换自己的内核的时候先卸载原来的工具包，否则编译 kernel make install 会报错
+./uninstall.sh
+
+# 替换完之后重新安装，--add-kernel-support 会自动编译安装新的驱动工具
+./mlnxofedinstall --all --distro debian12.5 --force --add-kernel-support
 
 
 ```
